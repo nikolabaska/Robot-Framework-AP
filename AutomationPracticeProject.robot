@@ -179,19 +179,19 @@ TC_11- Pay by bank wire
 
 TC_12-Verify corectly price is changing
     Click Element    ${Singin}
-    Sleep    3
+    Wait Until Element Is Visible ${Singin}
     Input Text    ${LoginEmail}    ${username}
-    Sleep    3
+    Wait Until Element Is Visible ${LoginEmail}    ${username}
     Input Text    ${Password}     ${pass}
     Click Button    ${Submit}
-    Sleep    3
+    Wait Until Element Is Visible ${Submit}
     Click Element    ${T-Shrts}
-    Sleep    3
+    Wait Until Element Is Visible ${T-Shrts}
     Click element    ${AddtoCart}
-    Sleep    3
+    Wait Until Element Is Visible ${AddtoCart}
     Click Element    ${Checkout}
     Click Element    ${Quantity}
-    Sleep    3
+    Wait Until Element Is Visible ${Quantity}
     Get Text    ${Total price}
 
 
