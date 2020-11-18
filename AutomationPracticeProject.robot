@@ -27,6 +27,7 @@ ${Procced2}       //*[@id="form"]/p/button
 ${PaybyCheck}     //*[@id="HOOK_PAYMENT"]/div[2]/div/p/a
 ${Procced0}       //*[@id="center_column"]/p[2]/a[1]
 ${Total price}    //*[@id="total_price"]
+${PayByBank}   //*[@id="HOOK_PAYMENT"]/div[1]/div/p/a
 
 *** Test Cases ***
 TC_1-Verify create account
@@ -126,45 +127,9 @@ TC_9- Log out to see if the cart info will be memorized
     Wait Until Element Is Visible    ${Checkout} \
     Click element    ${Logout}
 
-TC_10-Equvalence partition into Quantity field
-    Open Browser    ${URL}    chrome
-    Click Element    //*[@id="header"]/div[2]/div/div/nav/div[1]/a
-    Sleep    3
-    Input Text    id:email    ${username}
-    Sleep    3
-    Input Text    id:passwd    ${pass}
-    Click Button    id:SubmitLogin
-    Sleep    3
-    Click Element    //*[@id="block_top_menu"]/ul/li[3]/a
-    Sleep    3
-    Click element    xpath://span[text()='Add to cart']
-    Sleep    3
-    Click Element    xpath://html/body/div/div[1]/header/div[3]/div/div/div[4]/div[1]/div[2]/div[4]/a
-    Sleep    3
-    Input Text    class:cart_quantity_input    0
-    Click Element    //*[@id="center_column"]/p[2]/a[1]
-    Close Browser
 
-TC_11-Equvalence partition into Quantity field
-    Open Browser    ${URL}    chrome
-    Click Element    //*[@id="header"]/div[2]/div/div/nav/div[1]/a
-    Sleep    3
-    Input Text    id:email    ${username}
-    Sleep    3
-    Input Text    id:passwd    ${pass}
-    Click Button    id:SubmitLogin
-    Sleep    3
-    Click Element    //*[@id="block_top_menu"]/ul/li[3]/a
-    Sleep    3
-    Click element    xpath://span[text()='Add to cart']
-    Sleep    3
-    Click Element    xpath://html/body/div/div[1]/header/div[3]/div/div/div[4]/div[1]/div[2]/div[4]/a
-    Sleep    3
-    Input Text    class:cart_quantity_input    100000000
-    Click Element    //*[@id="center_column"]/p[2]/a[1]
-    Close Browser
 
-TC_12-Pay by check order
+TC_10-Pay by check order
     Click Element    ${Singin}
     Wait Until Element Is Visible    ${Singin} \
     Input Text    ${LoginEmail}    ${username}
@@ -187,32 +152,32 @@ TC_12-Pay by check order
     Wait Until Element Is Visible    ${Procced2}
     Click Element    ${PaybyCheck}
 
-TC_13- Pay by bank wire
-    Open Browser    ${URL}    chrome
-    Click Element    //*[@id="header"]/div[2]/div/div/nav/div[1]/a
-    Sleep    3
-    Input Text    id:email    ${username}
-    Sleep    3
-    Input Text    id:passwd    ${pass}
-    Click Button    id:SubmitLogin
-    Sleep    3
-    Click Element    //*[@id="block_top_menu"]/ul/li[3]/a
-    Sleep    3
-    Click element    xpath://span[text()='Add to cart']
-    Sleep    3
-    Click Element    xpath://html/body/div/div[1]/header/div[3]/div/div/div[4]/div[1]/div[2]/div[4]/a
-    Sleep    3
-    Click Element    //*[@id="center_column"]/p[2]/a[1]
-    Sleep    3
-    Click Element    //*[@id="center_column"]/form/p/button
-    Select Checkbox    id:cgv
-    Checkbox Should Be Selected    id:cgv
-    Click Element    //*[@id="form"]/p/button
-    Sleep    3
-    Click Element    //*[@id="HOOK_PAYMENT"]/div[1]/div/p/a
-    Close Browser
+TC_11- Pay by bank wire
+    Click Element    ${Singin}
+    Wait Until Element Is Visible    ${Singin} \
+    Input Text    ${LoginEmail}    ${username}
+    Wait Until Element Is Visible    ${LoginEmail}
+    Input Text    ${Password}    ${pass}
+    Click Button    ${Submit}
+    Wait Until Element Is Visible    ${Submit} \
+    Click Element    ${T-Shrts}
+    Wait Until Element Is Visible    ${T-Shrts} \
+    Click element    ${AddtoCart}
+    Wait Until Element Is Visible    ${AddtoCart}
+    Click Element    ${Checkout}
+    Wait Until Element Is Visible    ${Checkout} \
+    Click Element    ${Procced0}
+    Wait Until Element Is Visible    ${Procced0}
+    Click Element    ${Procced1}
+    Select Checkbox    ${Checkbox}
+    Checkbox Should Be Selected    ${Checkbox}
+    Click Element    ${Procced2}
+    Wait Until Element Is Visible    ${Procced2}
+    Click Element    ${PaybyCheck}
+    Click Element    ${PayByBank}
+    
 
-TC_14-Verify corectly price is changing
+TC_12-Verify corectly price is changing
     Click Element    ${Singin}
     Sleep    3
     Input Text    ${LoginEmail}    ${username}
@@ -229,62 +194,6 @@ TC_14-Verify corectly price is changing
     Sleep    3
     Get Text    ${Total price}
 
-TC_15 - Try to update address
-    Open Browser    ${URL}    chrome
-    Click Element    //*[@id="header"]/div[2]/div/div/nav/div[1]/a
-    Sleep    3
-    Input Text    id:email    ${username}
-    Sleep    3
-    Input Text    id:passwd    ${pass}
-    Click Button    id:SubmitLogin
-    Sleep    3
-    Click Element    //*[@id="block_top_menu"]/ul/li[3]/a
-    Sleep    3
-    Click element    xpath://span[text()='Add to cart']
-    Sleep    3
-    Click Element    xpath://html/body/div/div[1]/header/div[3]/div/div/div[4]/div[1]/div[2]/div[4]/a
-    Sleep    3
-    Click Element    //*[@id="center_column"]/p[2]/a[1]
-    Sleep    3
-    Click Element    //*[@id="address_delivery"]/li[7]/a
-    Close Browser
 
-TC_16-Add new address
-    Open Browser    ${URL}    chrome
-    Click Element    //*[@id="header"]/div[2]/div/div/nav/div[1]/a
-    Sleep    3
-    Input Text    id:email    ${username}
-    Sleep    3
-    Input Text    id:passwd    ${pass}
-    Click Button    id:SubmitLogin
-    Sleep    3
-    Click Element    //*[@id="block_top_menu"]/ul/li[3]/a
-    Sleep    3
-    Click element    xpath://span[text()='Add to cart']
-    Sleep    3
-    Click Element    xpath://html/body/div/div[1]/header/div[3]/div/div/div[4]/div[1]/div[2]/div[4]/a
-    Sleep    3
-    Click Element    //*[@id="center_column"]/p[2]/a[1]
-    Sleep    3
-    Click Element    //*[@id="center_column"]/form/div/p/a
-    Close Browser
 
-TC_17-Try to proceed without checkbox
-    Open Browser    ${URL}    chrome
-    Click Element    //*[@id="header"]/div[2]/div/div/nav/div[1]/a
-    Sleep    3
-    Input Text    id:email    ${username}
-    Sleep    3
-    Input Text    id:passwd    ${pass}
-    Click Button    id:SubmitLogin
-    Sleep    3
-    Click Element    //*[@id="block_top_menu"]/ul/li[3]/a
-    Sleep    3
-    Click element    xpath://span[text()='Add to cart']
-    Sleep    3
-    Click Element    xpath://html/body/div/div[1]/header/div[3]/div/div/div[4]/div[1]/div[2]/div[4]/a
-    Sleep    3
-    Click Element    //*[@id="center_column"]/p[2]/a[1]
-    Sleep    3
-    Click Element    //*[@id="center_column"]/form/p/button
-    Close Browser
+
