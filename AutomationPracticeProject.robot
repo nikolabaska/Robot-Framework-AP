@@ -34,7 +34,11 @@ ${qunatity_plus}    //*[@id="cart_quantity_up_1_1_0_389681"]
 ${addproduct}     //*[@id="product_1_1_0_389681"]/td[5]/input[2]
 ${Add_more_products}    xpath://html/body/div/div[2]/div/div[3]/div/div[2]/table/tbody/tr/td[5]/div/a[2]
 ${product_quantity}    xpath://html/body/div/div[2]/div/div[3]/div/div[2]/table/tbody/tr/td[5]/div/a[2]
-
+${dbname}         avtosalon
+${dbport}         3306
+${dbuser}         root
+${dbpass}         ${EMPTY}
+${dbhost}         127.0.0.1
 
 Emty cart
     [Setup]    Open Browser    http://automationpractice.com/index.php    chrome
@@ -66,3 +70,14 @@ ProductQuantity
     END
     Wait Until Page Contains     Your shopping cart contains: 4 Products
 
+
+
+*** Test Cases ***
+Tc1
+    Connect To Database    pymysql    ${dbname}    ${dbuser}    ${dbpass}    ${dbhost}    ${dbport}
+    Table Must Exist    dukani
+    Execute Sql String    INSERT INTO ignore dukani (grad,ujp,lokacija) VALUES ('sk',23,'Partizanska1');
+    @{queryresult}    query    INSERT INTO ignore dukani (grad,ujp,lokacija) VALUES ('sk',23,'Partizanska1');
+    FOR    ${row}    IN    @{queryresult}
+        Log    ${row}
+    END
